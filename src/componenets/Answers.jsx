@@ -1,6 +1,11 @@
 import { useRef } from "react";
 
-export default function Answers({ answers, selectedAnswer, answerState, onSelect }) {
+export default function Answers({
+  answers,
+  selectedAnswer,
+  answerState,
+  onSelect,
+}) {
   const shuffeldAnswers = useRef();
 
   if (!shuffeldAnswers.current) {
@@ -13,9 +18,11 @@ export default function Answers({ answers, selectedAnswer, answerState, onSelect
       {shuffeldAnswers.current.map((answer) => {
         const isSelected = selectedAnswer === answer;
         let cssClass = "";
+
         if (answerState === "answered" && isSelected) {
           cssClass = "selected";
         }
+
         if (
           (answerState === "correct" || answerState === "wrong") &&
           isSelected
@@ -25,10 +32,7 @@ export default function Answers({ answers, selectedAnswer, answerState, onSelect
 
         return (
           <li key={answer} className="answer">
-            <button
-              onClick={() => onSelect(answer)}
-              className={cssClass}
-            >
+            <button onClick={() => onSelect(answer)} className={cssClass} disabled={answerState !== ''}>
               {answer}
             </button>
           </li>
