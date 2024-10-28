@@ -26,7 +26,7 @@ export default function Answers({ answers, selectedAnswer, answerState, onSelect
         return (
           <li key={answer} className="answer">
             <button
-              onClick={() => handleSelectAnswer(answer)}
+              onClick={() => onSelect(answer)}
               className={cssClass}
             >
               {answer}

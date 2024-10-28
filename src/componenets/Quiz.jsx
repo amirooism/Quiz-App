@@ -1,8 +1,7 @@
 import { useCallback, useState } from "react";
 import QUESTIONS from "../questions";
 import quizIsCompleteImg from "../assets/quiz-complete.png";
-import QuestionTimer from "./QuestionTimer";
-import Answers from "./Answers";
+import Question from "./Question";
 
 export default function Quiz() {
   const [userAnswers, setUserAnswers] = useState([]);
@@ -54,25 +53,17 @@ export default function Quiz() {
   //   }
   //   QUESTIONS[activeQuestionIndex].answers.sort(() => Math.random() -0.5) , shuffele array function which i use is Fisher-Yates Shuffle
 
-  
-
   return (
     <div id="quiz">
-      <div id="question">
-        <QuestionTimer
-          timeout={10000}
-          onTimeout={handleSkipAnswer}
-          key={activeQuestionIndex}
-        />
-        <p>{QUESTIONS[activeQuestionIndex].text}</p>
-        <Answers
-          key={activeQuestionIndex}
-          answers={QUESTIONS[activeQuestionIndex].answers}
-          selectedAnswer={userAnswers[userAnswers.length - 1]}
-          answerState={answerState}
-          onSelect={handleSelectAnswer}
-        />
-      </div>
+      <Question
+      key={activeQuestionIndex}
+        questionText={QUESTIONS[activeQuestionIndex].text}
+        answers={QUESTIONS[activeQuestionIndex].answers}
+        answerState={answerState}
+        selectedAnswer={userAnswers[userAnswers.length - 1]}
+        onselectedAnswer={handleSelectAnswer}
+        onSkipAnswer={handleSkipAnswer}
+      />
     </div>
   );
 }
