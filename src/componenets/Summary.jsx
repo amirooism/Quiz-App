@@ -39,8 +39,8 @@ const wrongAnswerShare = 100 - skippedAnswersShare - correctAnswerShare //:D
           } else {
             cssClass += " wrong";
           }
-          return (
-            <li key={answer}>
+          return ( // i use index as key becuase if i use answer , if two of question or more stay not answered, we have two same key with same null 
+            <li key={index}>
               <h3>{index + 1}</h3>
               <p className="question">{QUESTIONS[index].text}</p>
               <p className={cssClass}>{answer ?? "Skipped"}</p>
