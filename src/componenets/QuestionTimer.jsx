@@ -5,7 +5,7 @@ export default function QuestionTimer({ timeout, onTimeout, mode }) {
 
   useEffect(() => {
     const timer = setTimeout(onTimeout, timeout);
-    return () => { 
+    return () => {
       clearTimeout(timer);
     };
   }, [onTimeout, timeout]);
@@ -19,5 +19,12 @@ export default function QuestionTimer({ timeout, onTimeout, mode }) {
     }, 100);
   }, []);
 
-  return <progress id="question-time" max={timeout} value={remainingTime} className={mode} />;
+  return (
+    <progress
+      id="question-time"
+      max={timeout}
+      value={remainingTime}
+      className={mode}
+    />
+  );
 }
